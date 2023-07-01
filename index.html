@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>BikeBuddies - Niederösterreich</title>
+
+    <!-- Disable unwanted scaling of page -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- favicon (Icon im Tab)-->
+    <link rel="shortcut icon" href="icons/tab_cycle.png" type="image/png">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+
+    <!-- Leaflet Providers -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.13.0/leaflet-providers.min.js"
+        integrity="sha512-5EYsvqNbFZ8HX60keFbe56Wr0Mq5J1RrA0KdVcfGDhnjnzIRsDrT/S3cxdzpVN2NGxAB9omgqnlh4/06TvWCMw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!--Leaflet Fullscreen-->
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css'
+        rel='stylesheet' />
+
+    <!-- Leaflet GPX-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.7.0/gpx.min.js"></script>
+
+    <!-- Leaflet Elevation -->
+    <link rel="stylesheet" href="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.css" />
+    <script src="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.js"></script>
+
+    <!-- Leaflet MiniMap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"
+        integrity="sha512-efbAfGnrnjA+hLwOLu91W034fBGPsMwZMVCTwLUI2PDX/m7rOiuhYZ+D2mZ8rKcpC/I/7pdgoL8T4eYvMHNoQg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"
+        integrity="sha512-ceQPs2CHke3gSINLt/JV37W1rfJOM64yuH999hnRhTP7tNtcSBp5hlTKhn8CEIhsFweSBrZMPVotAKjoyxGWNg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- eigene Stile und Hauptskript -->
+    <link rel="stylesheet" href="main.css">
+    <script defer src="main.js"></script>
+
+    <!-- Verlinkung zu Pulldown.js-->
+    <script src="dropdown.js"></script>
+
+</head>
+
+<nav id="pulldown">
+    <ul>
+        <li><a href="https://bikebuddies.github.io/start">Startseite</a></li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle">Touren</a>
+            <ul class="dropdown-menu">
+                <li><a href="https://bikebuddies.github.io/burgenland">Burgenland</a></li>
+                <li><a href="https://bikebuddies.github.io/niederoesterreich1/">Niederösterreich</a></li>
+                <li><a href="https://bikebuddies.github.io/wien">Wien</a></li>
+            </ul>
+        </li>
+        <li><a href="https://bikebuddies.github.io/impressum">Impressum</a></li>
+    </ul>
+</nav>
+
+
+<body>
+    <main>
+        <header>
+            <h1><i class="fa-solid fa-person-biking"></i> BikeBuddies</h1> <br>
+            <h2>Radfahren in Niederösterreich</h2>
+            <nav>
+                <i class="fab fa-github"></i> <a href="https://github.com/bikebuddies/start">Github</a>
+            </nav>
+        </header>
+        <article>
+            <p>
+                <b>Hier findet ihr unsere Top 7 Radrouten für Niederösterreich. </b><br>
+                Beim Klicken auf eine Route öffnet sich ein Höhenprofil unterhalb der Karte- so könnt ihr die
+                Distanz und die zu radelnden Höhenmeter besser abschätzen. <br>
+                Im Layer Menü könnt ihr die einzelnen Routen ein- oder ausblenden und den Wetterbericht aktivieren:
+                mit Klick auf einen beliebigen Ort auf der Karte bekommt ihr aktuelle Informationen zum Wetter
+                mit 24-stündiger Vorhersage. Für eine Abkühlung könnt ihr euch noch ausgewählte Badessen in der Region
+                anzeigen lassen. <br>
+                Weiterführende Informationen zu Unterkünften und wo ihr euch stärken und guten Wein verkosten könnt
+                findet ihr in den weiterführenden Links unter der Karte. <br>
+                Schönes Radeln in Niederösterreich!
+            </p>
+            <h3>Karte mit den Top 7 Radrouten Niederösterreichs</h3>
+            <div id="map"></div>
+            <div id="profile"></div>
+
+        </article>
+        <footer>
+            <h3>Weiterführende Links:</h3>
+            <ul>
+                <li><a href="https://heurigenkalender.niederoesterreich.at/"><u>Heurigenkalender</u></a></li>
+                <li><a
+                        href="https://www.burgenland.info/uebernachten/unterkuenfte/unterkuenfte-fuer-radfahrer"><u>Unterkünfte</u></a>
+                </li>
+            </ul>
+            <br>
+            <strong>Quellen der Radrouten:</strong>
+            <a
+                href="https://www.bergfex.at/sommer/niederoesterreich/touren/fernradweg/11709,kamp-thaya-march-radroute/">Kamp-Thaya-March-Radroute</a>
+            |
+            <a
+                href="https://www.bergfex.at/sommer/niederoesterreich/touren/fernradweg/17716,piestingtal-radweg/">Piestingtal-Radroute</a>
+            |
+            <a
+                href="https://www.bergfex.at/sommer/niederoesterreich/touren/fernradweg/84734,thayarunde-waldviertel/">Thayarunde</a>
+            |
+            <a
+                href="https://www.bergfex.at/sommer/niederoesterreich/touren/fernradweg/17634,traisental-radweg/">Traisental-Radweg</a>
+            |
+            <a
+                href="https://www.bergfex.at/sommer/niederoesterreich/touren/fernradweg/11703,triesting-goelsental-radweg/">Triesting-Gölsental-Radweg</a>
+            |
+            <a href="https://www.outdooractive.com/r/1366729">Triestingau-Radweg</a> |
+            <a href="https://www.outdooractive.com/r/10654578">Ybbstal-Radweg</a><br><br>
+            <strong>Quellen der Wettervorhersage:</strong>
+            <nav>
+                <a href="https://api.met.no/weatherapi/locationforecast/2.0/documentation">MET Norway
+                    Locationforecast</a> |
+                <a href="https://api.met.no/weatherapi/weathericon/2.0/documentation">MET Norway Weathericons</a>
+            </nav>
+        </footer>
+    </main>
+</body>
+
+</html>
