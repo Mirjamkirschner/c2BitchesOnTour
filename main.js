@@ -14,7 +14,7 @@ let map = L.map("map", {
 
 // thematische Layer
 let themaLayer = {
-    kampThayaMarch: L.featureGroup(),//https://www.bergfex.at/sommer/niederoesterreich/touren/fernradweg/11709,kamp-thaya-march-radroute/
+    innsbruckGerlos: L.featureGroup(),//https://www.bergfex.at/sommer/niederoesterreich/touren/fernradweg/11709,kamp-thaya-march-radroute/
     piestingtal: L.featureGroup(),//https://www.bergfex.at/sommer/niederoesterreich/touren/fernradweg/17716,piestingtal-radweg/
     thayarunde: L.featureGroup(),//https://www.bergfex.at/sommer/niederoesterreich/touren/fernradweg/84734,thayarunde-waldviertel/
     traisental: L.featureGroup(),//https://www.bergfex.at/sommer/niederoesterreich/touren/fernradweg/17634,traisental-radweg/
@@ -32,7 +32,7 @@ let layerControl = L.control.layers({
     "StamenB/W": L.tileLayer.provider("Stamen.TonerLite"),
     "CycleTrails": L.tileLayer.provider("CyclOSM"),
 }, {
-    "Kamp-Thaya-March-Radweg": themaLayer.kampThayaMarch.addTo(map),
+    "Innsbruck-Gerlos": themaLayer.innsbruckGerlos.addTo(map),
     "Piestingtal-Radweg": themaLayer.piestingtal.addTo(map),
     "Thayarunde": themaLayer.thayarunde.addTo(map),
     "Traisental-Radweg": themaLayer.traisental.addTo(map),
@@ -119,8 +119,8 @@ map.on("click", function (evt) {
 });
 
 //GPX-Tracks
-//Kamp-Thaya-March
-var gpx = './data/niederoesterreich/kamp_thaya_march.gpx';
+//Innsbruck-Gerlos
+var gpx = './gpx/Innsbruck_Gerlos.gpx';
 let kamp = new L.GPX(gpx, {
     polyline_options: {
         color: '#FFD700',
@@ -133,20 +133,20 @@ let kamp = new L.GPX(gpx, {
         shadowUrl: false,
         wptIconUrls: false
     }
-}).addTo(themaLayer.kampThayaMarch);
+}).addTo(themaLayer.innsbruckGerlos);
 
 
-// GPX Track visualisieren aus https://raruto.github.io/leaflet-elevation/
-kamp.on("click", function (evt) {
-    let controlElevation = L.control.elevation({
-        time: false,
-        elevationDiv: "#profile",
-        height: 300,
-        theme: "kamp-thaya"
-    }).addTo(map);
-    // Load track from url (allowed data types: "*.geojson", "*.gpx", "*.tcx")
-    controlElevation.load("./data/niederoesterreich/kamp_thaya_march.gpx")
-});
+// // GPX Track visualisieren aus https://raruto.github.io/leaflet-elevation/
+// kamp.on("click", function (evt) {
+//     let controlElevation = L.control.elevation({
+//         time: false,
+//         elevationDiv: "#profile",
+//         height: 300,
+//         theme: "innsbruck-gerlos"
+//     }).addTo(map);
+//     // Load track from url (allowed data types: "*.geojson", "*.gpx", "*.tcx")
+//     controlElevation.load("./gpx/Innsbruck_Gerlos.gpx")
+// });
 
 
 //Piestingtal
