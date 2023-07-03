@@ -1,8 +1,8 @@
 // Zentrum Karte Objekt
 let noeMitte = {
-    lat: 48.27032985615784,
-    lng: 15.764989268344962,
-    title: "Max-Schubert-Warte, Niederösterreich"
+    lat: 47.57263991370453,
+    lng: 12.575230341446556,
+    title: "irgendwo"
 };
 
 // Karte initialisieren und Fullscreen Control 
@@ -10,17 +10,18 @@ let map = L.map("map", {
     fullscreenControl: true
 }).setView([
     noeMitte.lat, noeMitte.lng
-], 8.5);
+], 6.5);
 
 // thematische Layer
 let themaLayer = {
-    innsbruckGerlos: L.featureGroup(),//https://www.bergfex.at/sommer/niederoesterreich/touren/fernradweg/11709,kamp-thaya-march-radroute/
-    piestingtal: L.featureGroup(),//https://www.bergfex.at/sommer/niederoesterreich/touren/fernradweg/17716,piestingtal-radweg/
-    thayarunde: L.featureGroup(),//https://www.bergfex.at/sommer/niederoesterreich/touren/fernradweg/84734,thayarunde-waldviertel/
-    traisental: L.featureGroup(),//https://www.bergfex.at/sommer/niederoesterreich/touren/fernradweg/17634,traisental-radweg/
-    triestingGoelsental: L.featureGroup(),//https://www.bergfex.at/sommer/niederoesterreich/touren/fernradweg/11703,triesting-goelsental-radweg/
-    triestingau: L.featureGroup(),//https://www.outdooractive.com/r/1366729
-    ybbstal: L.featureGroup(),//https://www.outdooractive.com/r/10654578
+    innsbruckGerlos: L.featureGroup(),
+    gerlosNeunbrunnen: L.featureGroup(),
+    neunbrunnenLofer: L.featureGroup(),
+    loferSalzburg: L.featureGroup(),
+    salzburgWolfgangsee: L.featureGroup(),
+    wolfgangseeTraunsee: L.featureGroup(),
+    traunseeLinz: L.featureGroup(),
+    linzLipno: L.featureGroup(),
     forecast: L.featureGroup(),
     badeseen: L.featureGroup(),
     eisdielen: L.featureGroup()
@@ -28,17 +29,19 @@ let themaLayer = {
 
 // Hintergrundlayer 
 let layerControl = L.control.layers({
-    "BasemapÖsterreich": L.tileLayer.provider("BasemapAT.grau").addTo(map),
+    "Terrain": L.tileLayer.provider("Stamen.Terrain").addTo(map),
+    "BasemapÖsterreich": L.tileLayer.provider("BasemapAT.grau"),
     "StamenB/W": L.tileLayer.provider("Stamen.TonerLite"),
     "CycleTrails": L.tileLayer.provider("CyclOSM"),
 }, {
     "Innsbruck-Gerlos": themaLayer.innsbruckGerlos.addTo(map),
-    "Piestingtal-Radweg": themaLayer.piestingtal.addTo(map),
-    "Thayarunde": themaLayer.thayarunde.addTo(map),
-    "Traisental-Radweg": themaLayer.traisental.addTo(map),
-    "Triesting-Gölsental-Radweg": themaLayer.triestingGoelsental.addTo(map),
-    "Triestingau-Radweg": themaLayer.triestingau.addTo(map),
-    "Ybbstal-Radweg": themaLayer.ybbstal.addTo(map),
+    "Gerlos-Neunbrunnen": themaLayer.gerlosNeunbrunnen.addTo(map),
+    "Neunbrunnen-Lofer": themaLayer.neunbrunnenLofer.addTo(map),
+    "Lofer-Salzburg": themaLayer.loferSalzburg.addTo(map),
+    "Salzburg-Wolfgangsee": themaLayer.salzburgWolfgangsee.addTo(map),
+    "Wolfgangsee-Traunsee": themaLayer.wolfgangseeTraunsee.addTo(map),
+    "Traunsee-Linz": themaLayer.traunseeLinz.addTo(map),
+    "Linz-Lipno": themaLayer.linzLipno.addTo(map),
     "Wettervorhersage MET Norway": themaLayer.forecast,
     "Badeseen": themaLayer.badeseen,
     "Eisdielen": themaLayer.eisdielen,
@@ -120,10 +123,10 @@ map.on("click", function (evt) {
 
 //GPX-Tracks
 //Innsbruck-Gerlos
-var gpx = './gpx/Innsbruck_Gerlos.gpx';
+var gpx = './tracks/Innsbruck_Gerlos.gpx';
 let kamp = new L.GPX(gpx, {
     polyline_options: {
-        color: '#FFD700',
+        color: '#ff1493',
         opacity: 0.75,
         weight: 3
     },
@@ -136,24 +139,24 @@ let kamp = new L.GPX(gpx, {
 }).addTo(themaLayer.innsbruckGerlos);
 
 
-// // GPX Track visualisieren aus https://raruto.github.io/leaflet-elevation/
-// kamp.on("click", function (evt) {
-//     let controlElevation = L.control.elevation({
-//         time: false,
-//         elevationDiv: "#profile",
-//         height: 300,
-//         theme: "innsbruck-gerlos"
-//     }).addTo(map);
-//     // Load track from url (allowed data types: "*.geojson", "*.gpx", "*.tcx")
-//     controlElevation.load("./gpx/Innsbruck_Gerlos.gpx")
-// });
+// GPX Track visualisieren aus https://raruto.github.io/leaflet-elevation/
+kamp.on("click", function (evt) {
+    let controlElevation = L.control.elevation({
+        time: false,
+        elevationDiv: "#profile",
+        height: 300,
+        theme: "innsbruck-gerlos"
+    }).addTo(map);
+    // Load track from url (allowed data types: "*.geojson", "*.gpx", "*.tcx")
+    controlElevation.load("./gpx/Innsbruck_Gerlos.gpx")
+});
 
 
-//Piestingtal
-var gpx = './data/niederoesterreich/piestingtal.gpx';
+//Gerlos-Neunbrunnen
+var gpx = './tracks/Gerlos_Neunbrunnen.gpx';
 let piesting = new L.GPX(gpx, {
     polyline_options: {
-        color: '#EEEE00',
+        color: '#ff1493',
         opacity: 0.75,
         weight: 3
     },
@@ -163,7 +166,7 @@ let piesting = new L.GPX(gpx, {
         shadowUrl: false,
         wptIconUrls: false
     }
-}).addTo(themaLayer.piestingtal);
+}).addTo(themaLayer.gerlosNeunbrunnen);
 // GPX Track visualisieren aus https://raruto.github.io/leaflet-elevation/
 piesting.on("click", function (evt) {
     let controlElevation = L.control.elevation({
@@ -173,14 +176,14 @@ piesting.on("click", function (evt) {
         theme: "kamp-thaya"
     }).addTo(map);
     // Load track from url (allowed data types: "*.geojson", "*.gpx", "*.tcx")
-    controlElevation.load("./data/niederoesterreich/piestingtal.gpx")
+    controlElevation.load("./tracks/Gerlos_Neunbrunnen.gpx")
 });
 
-//Thayarunde
-var gpx = './data/niederoesterreich/thayarunde.gpx';
-let thaya = new L.GPX(gpx, {
+//Neunbrunnen-Lofer
+var gpx = './tracks/Neunbrunnen_Lofer.gpx';
+let lofer = new L.GPX(gpx, {
     polyline_options: {
-        color: '#FFEBCD',
+        color: '#ff1493',
         opacity: 0.75,
         weight: 3
     },
@@ -190,7 +193,34 @@ let thaya = new L.GPX(gpx, {
         shadowUrl: false,
         wptIconUrls: false
     }
-}).addTo(themaLayer.thayarunde);
+}).addTo(themaLayer.neunbrunnenLofer);
+// GPX Track visualisieren aus https://raruto.github.io/leaflet-elevation/
+lofer.on("click", function (evt) {
+    let controlElevation = L.control.elevation({
+        time: false,
+        elevationDiv: "#profile",
+        height: 300,
+        theme: "kamp-thaya"
+    }).addTo(map);
+    // Load track from url (allowed data types: "*.geojson", "*.gpx", "*.tcx")
+    controlElevation.load("./tracks/Neunbrunnen_Lofer.gpx")
+});
+
+//Lofer-Salzburg
+var gpx = './tracks/Lofer_Salzburg.gpx';
+let thaya = new L.GPX(gpx, {
+    polyline_options: {
+        color: '#ff1493',
+        opacity: 0.75,
+        weight: 3
+    },
+    marker_options: {
+        startIconUrl: "icons/tab_cycle.png",
+        endIconUrl: false,
+        shadowUrl: false,
+        wptIconUrls: false
+    }
+}).addTo(themaLayer.loferSalzburg);
 // GPX Track visualisieren aus https://raruto.github.io/leaflet-elevation/
 thaya.on("click", function (evt) {
     let controlElevation = L.control.elevation({
@@ -200,14 +230,14 @@ thaya.on("click", function (evt) {
         theme: "kamp-thaya"
     }).addTo(map);
     // Load track from url (allowed data types: "*.geojson", "*.gpx", "*.tcx")
-    controlElevation.load("./data/niederoesterreich/thayarunde.gpx")
+    controlElevation.load("./tracks/Lofer_Salzburg.gpx")
 });
 
-//Traisentalweg
-var gpx = './data/niederoesterreich/traisentalweg.gpx';
+//Salzburg-Wolfgangsee
+var gpx = './tracks/Salzburg_Wolfgangsee.gpx';
 let traisen = new L.GPX(gpx, {
     polyline_options: {
-        color: '#FFFACD',
+        color: '#ff1493',
         opacity: 0.75,
         weight: 3
     },
@@ -217,7 +247,7 @@ let traisen = new L.GPX(gpx, {
         shadowUrl: false,
         wptIconUrls: false
     }
-}).addTo(themaLayer.traisental);
+}).addTo(themaLayer.salzburgWolfgangsee);
 // GPX Track visualisieren aus https://raruto.github.io/leaflet-elevation/
 traisen.on("click", function (evt) {
     let controlElevation = L.control.elevation({
@@ -227,14 +257,14 @@ traisen.on("click", function (evt) {
         theme: "kamp-thaya"
     }).addTo(map);
     // Load track from url (allowed data types: "*.geojson", "*.gpx", "*.tcx")
-    controlElevation.load("./data/niederoesterreich/traisentalweg.gpx")
+    controlElevation.load("./tracks/Salzburg_Wolfgangsee.gpx")
 });
 
-//Triesting Gölsental
-var gpx = './data/niederoesterreich/triesting_goelsental.gpx';
+//Wolfgangsee-Traunsee
+var gpx = './tracks/Wolfgangsee_Traunsee.gpx';
 let triesting = new L.GPX(gpx, {
     polyline_options: {
-        color: '#FFB90F',
+        color: '#ff1493',
         opacity: 0.75,
         weight: 3
     },
@@ -244,7 +274,7 @@ let triesting = new L.GPX(gpx, {
         shadowUrl: false,
         wptIconUrls: false
     }
-}).addTo(themaLayer.triestingGoelsental);
+}).addTo(themaLayer.wolfgangseeTraunsee);
 // GPX Track visualisieren aus https://raruto.github.io/leaflet-elevation/
 triesting.on("click", function (evt) {
     let controlElevation = L.control.elevation({
@@ -254,14 +284,14 @@ triesting.on("click", function (evt) {
         theme: "kamp-thaya"
     }).addTo(map);
     // Load track from url (allowed data types: "*.geojson", "*.gpx", "*.tcx")
-    controlElevation.load("./data/niederoesterreich/triesting_goelsental.gpx")
+    controlElevation.load("./tracks/Wolfgangsee_Traunsee.gpx")
 });
 
-//Triestingau
-var gpx = './data/niederoesterreich/triestingau.gpx';
+//Traunsee-Linz
+var gpx = './tracks/Traunsee_Linz.gpx';
 let triestingau = new L.GPX(gpx, {
     polyline_options: {
-        color: '#B8860B',
+        color: '#ff1493',
         opacity: 0.75,
         weight: 3
     },
@@ -271,7 +301,7 @@ let triestingau = new L.GPX(gpx, {
         shadowUrl: false,
         wptIconUrls: false
     }
-}).addTo(themaLayer.triestingau);
+}).addTo(themaLayer.traunseeLinz);
 // GPX Track visualisieren aus https://raruto.github.io/leaflet-elevation/
 triestingau.on("click", function (evt) {
     let controlElevation = L.control.elevation({
@@ -281,14 +311,14 @@ triestingau.on("click", function (evt) {
         theme: "triestingau"
     }).addTo(map);
     // Load track from url (allowed data types: "*.geojson", "*.gpx", "*.tcx")
-    controlElevation.load("./data/niederoesterreich/triestingau.gpx")
+    controlElevation.load("./tracks/Traunsee_Linz.gpx")
 });
 
-//Ybbstalweg
-var gpx = './data/niederoesterreich/ybbstalradweg.gpx';
+//Linz-Lipno
+var gpx = './tracks/Linz_Lipno.gpx';
 let ybbs = new L.GPX(gpx, {
     polyline_options: {
-        color: '#EEDD82',
+        color: '#ff1493',
         opacity: 0.75,
         weight: 3
     },
@@ -298,7 +328,7 @@ let ybbs = new L.GPX(gpx, {
         shadowUrl: false,
         wptIconUrls: false
     }
-}).addTo(themaLayer.ybbstal);
+}).addTo(themaLayer.linzLipno);
 // GPX Track visualisieren aus https://raruto.github.io/leaflet-elevation/
 ybbs.on("click", function (evt) {
     let controlElevation = L.control.elevation({
@@ -308,7 +338,7 @@ ybbs.on("click", function (evt) {
         theme: "kamp-thaya"
     }).addTo(map);
     // Load track from url (allowed data types: "*.geojson", "*.gpx", "*.tcx")
-    controlElevation.load("./data/niederoesterreich/ybbstalradweg.gpx")
+    controlElevation.load("./tracks/Linz_Lipno.gpx")
 });
 
 // Marker der größten Städte
