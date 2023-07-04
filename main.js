@@ -23,7 +23,6 @@ let themaLayer = {
 // Hintergrundlayer 
 let layerControl = L.control.layers({
     "Terrain": L.tileLayer.provider("Stamen.Terrain").addTo(map),
-    "BasemapÖsterreich": L.tileLayer.provider("BasemapAT.grau"),
     "StamenB/W": L.tileLayer.provider("Stamen.TonerLite"),
     "CycleTrails": L.tileLayer.provider("CyclOSM"),
 }, {
@@ -114,10 +113,10 @@ let kamp = new L.GPX(gpx, {
     polyline_options: {
         color: '#ff1493',
         opacity: 0.75,
-        weight: 3
+        weight: 6
     },
     marker_options: {
-        startIconUrl: "icons/tab_cycle.png",
+        startIconUrl: false,
         endIconUrl: false,
         shadowUrl: false,
         wptIconUrls: false
@@ -144,7 +143,7 @@ let piesting = new L.GPX(gpx, {
     polyline_options: {
         color: '#8a2be2',
         opacity: 0.75,
-        weight: 3
+        weight: 6
     },
     marker_options: {
         startIconUrl: false,
@@ -171,7 +170,7 @@ let lofer = new L.GPX(gpx, {
     polyline_options: {
         color: '#ff1493',
         opacity: 0.75,
-        weight: 3
+        weight: 6
     },
     marker_options: {
         startIconUrl: false,
@@ -198,7 +197,7 @@ let thaya = new L.GPX(gpx, {
     polyline_options: {
         color: '#8a2be2',
         opacity: 0.75,
-        weight: 3
+        weight: 6
     },
     marker_options: {
         startIconUrl: false,
@@ -225,7 +224,7 @@ let traisen = new L.GPX(gpx, {
     polyline_options: {
         color: '#ff1493',
         opacity: 0.75,
-        weight: 3
+        weight: 6
     },
     marker_options: {
         startIconUrl: false,
@@ -252,7 +251,7 @@ let triesting = new L.GPX(gpx, {
     polyline_options: {
         color: '#8a2be2',
         opacity: 0.75,
-        weight: 3
+        weight: 6
     },
     marker_options: {
         startIconUrl: false,
@@ -279,7 +278,7 @@ let triestingau = new L.GPX(gpx, {
     polyline_options: {
         color: '#ff1493',
         opacity: 0.75,
-        weight: 3
+        weight: 6
     },
     marker_options: {
         startIconUrl: false,
@@ -306,10 +305,10 @@ let ybbs = new L.GPX(gpx, {
     polyline_options: {
         color: '#8a2be2',
         opacity: 0.75,
-        weight: 3
+        weight: 6
     },
     marker_options: {
-        startIconUrl: "icons/tab_cycle.png",
+        startIconUrl: false,
         endIconUrl: false,
         shadowUrl: false,
         wptIconUrls: false
