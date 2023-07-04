@@ -10,18 +10,11 @@ let map = L.map("map", {
     fullscreenControl: true
 }).setView([
     noeMitte.lat, noeMitte.lng
-], 6.5);
+], 7);
 
 // thematische Layer
 let themaLayer = {
-    innsbruckGerlos: L.featureGroup(),
-    gerlosNeunbrunnen: L.featureGroup(),
-    neunbrunnenLofer: L.featureGroup(),
-    loferSalzburg: L.featureGroup(),
-    salzburgWolfgangsee: L.featureGroup(),
-    wolfgangseeTraunsee: L.featureGroup(),
-    traunseeLinz: L.featureGroup(),
-    linzLipno: L.featureGroup(),
+    innsbruckLipno: L.featureGroup(),
     forecast: L.featureGroup(),
     badeseen: L.featureGroup(),
     eisdielen: L.featureGroup()
@@ -34,14 +27,7 @@ let layerControl = L.control.layers({
     "StamenB/W": L.tileLayer.provider("Stamen.TonerLite"),
     "CycleTrails": L.tileLayer.provider("CyclOSM"),
 }, {
-    "Innsbruck-Gerlos": themaLayer.innsbruckGerlos.addTo(map),
-    "Gerlos-Neunbrunnen": themaLayer.gerlosNeunbrunnen.addTo(map),
-    "Neunbrunnen-Lofer": themaLayer.neunbrunnenLofer.addTo(map),
-    "Lofer-Salzburg": themaLayer.loferSalzburg.addTo(map),
-    "Salzburg-Wolfgangsee": themaLayer.salzburgWolfgangsee.addTo(map),
-    "Wolfgangsee-Traunsee": themaLayer.wolfgangseeTraunsee.addTo(map),
-    "Traunsee-Linz": themaLayer.traunseeLinz.addTo(map),
-    "Linz-Lipno": themaLayer.linzLipno.addTo(map),
+    "Innsbruck-Lipno": themaLayer.innsbruckLipno.addTo(map),
     "Wettervorhersage MET Norway": themaLayer.forecast,
     "Badeseen": themaLayer.badeseen,
     "Eisdielen": themaLayer.eisdielen,
@@ -136,7 +122,7 @@ let kamp = new L.GPX(gpx, {
         shadowUrl: false,
         wptIconUrls: false
     }
-}).addTo(themaLayer.innsbruckGerlos);
+}).addTo(themaLayer.innsbruckLipno);
 
 
 // GPX Track visualisieren aus https://raruto.github.io/leaflet-elevation/
@@ -156,17 +142,17 @@ kamp.on("click", function (evt) {
 var gpx = './tracks/Gerlos_Neunbrunnen.gpx';
 let piesting = new L.GPX(gpx, {
     polyline_options: {
-        color: '#ff1493',
+        color: '#8a2be2',
         opacity: 0.75,
         weight: 3
     },
     marker_options: {
-        startIconUrl: "icons/tab_cycle.png",
+        startIconUrl: false,
         endIconUrl: false,
         shadowUrl: false,
         wptIconUrls: false
     }
-}).addTo(themaLayer.gerlosNeunbrunnen);
+}).addTo(themaLayer.innsbruckLipno);
 // GPX Track visualisieren aus https://raruto.github.io/leaflet-elevation/
 piesting.on("click", function (evt) {
     let controlElevation = L.control.elevation({
@@ -188,12 +174,12 @@ let lofer = new L.GPX(gpx, {
         weight: 3
     },
     marker_options: {
-        startIconUrl: "icons/tab_cycle.png",
+        startIconUrl: false,
         endIconUrl: false,
         shadowUrl: false,
         wptIconUrls: false
     }
-}).addTo(themaLayer.neunbrunnenLofer);
+}).addTo(themaLayer.innsbruckLipno);
 // GPX Track visualisieren aus https://raruto.github.io/leaflet-elevation/
 lofer.on("click", function (evt) {
     let controlElevation = L.control.elevation({
@@ -210,17 +196,17 @@ lofer.on("click", function (evt) {
 var gpx = './tracks/Lofer_Salzburg.gpx';
 let thaya = new L.GPX(gpx, {
     polyline_options: {
-        color: '#ff1493',
+        color: '#8a2be2',
         opacity: 0.75,
         weight: 3
     },
     marker_options: {
-        startIconUrl: "icons/tab_cycle.png",
+        startIconUrl: false,
         endIconUrl: false,
         shadowUrl: false,
         wptIconUrls: false
     }
-}).addTo(themaLayer.loferSalzburg);
+}).addTo(themaLayer.innsbruckLipno);
 // GPX Track visualisieren aus https://raruto.github.io/leaflet-elevation/
 thaya.on("click", function (evt) {
     let controlElevation = L.control.elevation({
@@ -242,12 +228,12 @@ let traisen = new L.GPX(gpx, {
         weight: 3
     },
     marker_options: {
-        startIconUrl: "icons/tab_cycle.png",
+        startIconUrl: false,
         endIconUrl: false,
         shadowUrl: false,
         wptIconUrls: false
     }
-}).addTo(themaLayer.salzburgWolfgangsee);
+}).addTo(themaLayer.innsbruckLipno);
 // GPX Track visualisieren aus https://raruto.github.io/leaflet-elevation/
 traisen.on("click", function (evt) {
     let controlElevation = L.control.elevation({
@@ -264,17 +250,17 @@ traisen.on("click", function (evt) {
 var gpx = './tracks/Wolfgangsee_Traunsee.gpx';
 let triesting = new L.GPX(gpx, {
     polyline_options: {
-        color: '#ff1493',
+        color: '#8a2be2',
         opacity: 0.75,
         weight: 3
     },
     marker_options: {
-        startIconUrl: "icons/tab_cycle.png",
+        startIconUrl: false,
         endIconUrl: false,
         shadowUrl: false,
         wptIconUrls: false
     }
-}).addTo(themaLayer.wolfgangseeTraunsee);
+}).addTo(themaLayer.innsbruckLipno);
 // GPX Track visualisieren aus https://raruto.github.io/leaflet-elevation/
 triesting.on("click", function (evt) {
     let controlElevation = L.control.elevation({
@@ -296,12 +282,12 @@ let triestingau = new L.GPX(gpx, {
         weight: 3
     },
     marker_options: {
-        startIconUrl: "icons/tab_cycle.png",
+        startIconUrl: false,
         endIconUrl: false,
         shadowUrl: false,
         wptIconUrls: false
     }
-}).addTo(themaLayer.traunseeLinz);
+}).addTo(themaLayer.innsbruckLipno);
 // GPX Track visualisieren aus https://raruto.github.io/leaflet-elevation/
 triestingau.on("click", function (evt) {
     let controlElevation = L.control.elevation({
@@ -318,7 +304,7 @@ triestingau.on("click", function (evt) {
 var gpx = './tracks/Linz_Lipno.gpx';
 let ybbs = new L.GPX(gpx, {
     polyline_options: {
-        color: '#ff1493',
+        color: '#8a2be2',
         opacity: 0.75,
         weight: 3
     },
@@ -328,7 +314,7 @@ let ybbs = new L.GPX(gpx, {
         shadowUrl: false,
         wptIconUrls: false
     }
-}).addTo(themaLayer.linzLipno);
+}).addTo(themaLayer.innsbruckLipno);
 // GPX Track visualisieren aus https://raruto.github.io/leaflet-elevation/
 ybbs.on("click", function (evt) {
     let controlElevation = L.control.elevation({
@@ -341,41 +327,41 @@ ybbs.on("click", function (evt) {
     controlElevation.load("./tracks/Linz_Lipno.gpx")
 });
 
-// Marker der größten Städte
-const STAEDTE = [
-    {
-        title: "St. Pölten, Niederösterreich",
-        lat: 48.18735,
-        lng: 15.64139,
-        wikipedia: "https://de.wikipedia.org/wiki/St._P%C3%B6lten"
-    },
-    {
-        title: "Tulln",
-        lat: 48.33001133291213,
-        lng: 16.060959034595086,
-        wikipedia: "https://de.wikipedia.org/wiki/Tulln_an_der_Donau"
-    },
-    {
-        title: "Krems a.d. Donau",
-        lat: 48.41022698533108,
-        lng: 15.60382006192799,
-        wikipedia: "https://de.wikipedia.org/wiki/Krems_an_der_Donau"
-    },
-    {
-        title: "Baden bei Wien",
-        lat: 48.0024595018188,
-        lng: 16.230795040395048,
-        wikipedia: "https://de.wikipedia.org/wiki/Baden_(Nieder%C3%B6sterreich)"
-    },
-]
+// // Marker der größten Städte
+// const STAEDTE = [
+//     {
+//         title: "St. Pölten, Niederösterreich",
+//         lat: 48.18735,
+//         lng: 15.64139,
+//         wikipedia: "https://de.wikipedia.org/wiki/St._P%C3%B6lten"
+//     },
+//     {
+//         title: "Tulln",
+//         lat: 48.33001133291213,
+//         lng: 16.060959034595086,
+//         wikipedia: "https://de.wikipedia.org/wiki/Tulln_an_der_Donau"
+//     },
+//     {
+//         title: "Krems a.d. Donau",
+//         lat: 48.41022698533108,
+//         lng: 15.60382006192799,
+//         wikipedia: "https://de.wikipedia.org/wiki/Krems_an_der_Donau"
+//     },
+//     {
+//         title: "Baden bei Wien",
+//         lat: 48.0024595018188,
+//         lng: 16.230795040395048,
+//         wikipedia: "https://de.wikipedia.org/wiki/Baden_(Nieder%C3%B6sterreich)"
+//     },
+// ]
 
-for (let stadt of STAEDTE) {
-    L.marker([stadt.lat, stadt.lng])
-        .addTo(map)
-        .bindPopup(`<b>${stadt.title}</b> <br>
-        <a href="${stadt.wikipedia}">Wikipedia</a>
-    `)
-};
+// for (let stadt of STAEDTE) {
+//     L.marker([stadt.lat, stadt.lng])
+//         .addTo(map)
+//         .bindPopup(`<b>${stadt.title}</b> <br>
+//         <a href="${stadt.wikipedia}">Wikipedia</a>
+//     `)
+// };
 
 //Badeseen
 const BADESEEN = [
