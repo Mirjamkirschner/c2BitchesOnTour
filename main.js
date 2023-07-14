@@ -565,13 +565,13 @@ treviso.on("click", function (evt) {
 const MARKER = [
     {
         title: "Bamberg",
-        lat:49.891653663412995, 
+        lat: 49.891653663412995,
         lng: 10.886823712904773,
-        content: '<img src="pictures/Bamberg1.jpg" alt="Bamberg">',
+        // content: '<img src="pictures/Bamberg1.jpg" alt="Bamberg">',
     },
     {
         title: "Innsbruck",
-        lat: 47.264046153921015, 
+        lat: 47.264046153921015,
         lng: 11.383767501251285,
     }
 ]
