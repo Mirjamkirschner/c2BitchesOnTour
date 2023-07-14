@@ -16,6 +16,7 @@ let map = L.map("map", {
 let themaLayer = {
     innsbruckLipno: L.featureGroup(),
     muenchenVenedig: L.featureGroup(),
+    surfparty: L.featureGroup(),
     forecast: L.featureGroup(),
 };
 
@@ -27,6 +28,7 @@ let layerControl = L.control.layers({
 }, {
     "Innsbruck-Lipno": themaLayer.innsbruckLipno.addTo(map),
     "München-Venedig": themaLayer.muenchenVenedig.addTo(map),
+    "Surfparty": themaLayer.surfparty,
     "Wettervorhersage MET Norway": themaLayer.forecast,
 }).addTo(map);
 
@@ -35,7 +37,7 @@ layerControl.expand();
 
 // Instanz Leaflet MiniMap
 var miniMap = new L.Control.MiniMap(
-    L.tileLayer.provider("BasemapAT.basemap"), {
+    L.tileLayer.provider("Stamen.TonerLite"), {
     toggleDisplay: true,
 }
 ).addTo(map);
@@ -559,7 +561,27 @@ treviso.on("click", function (evt) {
 
 
 
-// // Marker der größten Städte
+// Marker
+const MARKER = [
+    {
+        title: "Bamberg",
+        lat:49.891653663412995, 
+        lng: 10.886823712904773,
+    },
+    {
+        title: "Innsbruck",
+        lat: 47.264046153921015, 
+        lng: 11.383767501251285,
+    }
+]
+
+for (let marker of MARKER) {
+    L.marker([marker.lat, marker.lng])
+        .addTo(map)
+        .bindPopup(`<b>${marker.title}</b> <br>
+    `)
+};
+
 // const STAEDTE = [
 //     {
 //         title: "St. Pölten, Niederösterreich",
