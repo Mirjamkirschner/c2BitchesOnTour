@@ -567,6 +567,7 @@ const MARKER = [
         title: "Bamberg",
         lat:49.891653663412995, 
         lng: 10.886823712904773,
+        content: '<img src="pictures/Bamberg1.jpg" alt="Bamberg">',
     },
     {
         title: "Innsbruck",
